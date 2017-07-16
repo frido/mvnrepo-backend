@@ -9,24 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping
 import com.mongodb.DB
 import com.mongodb.MongoClient
 import com.mongodb.MongoClientURI
-
-
-
-
+import org.springframework.beans.factory.annotation.Autowired
 
 @Controller
 @ComponentScan
 @EnableAutoConfiguration(exclude = arrayOf(org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration::class/*, org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration::class*/))
 class AppController {
 
+    @Autowired
+    lateinit var client: MongoClient
+
     @RequestMapping("test/")
     @ResponseBody
     fun test(): String {
-        val link = System.getenv("MONGO_URL")
-        print(link)
-        val uri = MongoClientURI(link)
-        val client = MongoClient(uri)
-        val db = client.getDatabase(uri.database)
+        val db = client.getDatabase("repo")
         println("Connect to database successfully")
         return "ok"
     }
