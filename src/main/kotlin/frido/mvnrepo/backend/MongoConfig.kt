@@ -2,20 +2,23 @@ package frido.mvnrepo.backend
 
 import com.mongodb.MongoClient
 import com.mongodb.MongoClientURI
+import com.mongodb.client.MongoDatabase
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 open class MongoConfig {
 
-    // TODO: seperate to more beans (MongoService)
-    // TODO: mongo_url as property
+    @Value("\${mongo_url}")
+    lateinit private var link: String
+
     @Bean
-    open fun getMongoClient(): MongoClient {
-        val link = System.getenv("MONGO_URL")
-        print(link)
-        val uri = MongoClientURI(link)
-        val client = MongoClient(uri)
-        return client;
-    }
+    open fun getMongoClientURI(): MongoClientURI = MongoClientURI(link)
+
+    @Bean
+    open fun getMongoClient(): MongoClient = MongoClient(getMongoClientURI())
+
+    @Bean
+    open fun getMongoDatabase(): MongoDatabase = getMongoClient().getDatabase(getMongoClientURI().database)
 }
