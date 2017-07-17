@@ -18,6 +18,9 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.heroku.sdk.heroku-gradle" version "0.2.0"
+}
 //subprojects {
     apply plugin: "java"
     apply plugin: 'kotlin'
@@ -52,4 +55,13 @@ dependencies {
 
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
+}
+
+heroku {
+    appName = "mvnrepo-backend"
+    includes = ["c:\\dev\\repos\\mvnrepo-backend\\build\\libs\\readinglist-0.0.1-SNAPSHOT.jar"] // TODO: nefunguje relativna cesta
+    includeBuildDir = false
+    processTypes(
+            web: "java -jar readinglist-0.0.1-SNAPSHOT.jar"
+    )
 }
