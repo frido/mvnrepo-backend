@@ -36,8 +36,9 @@ plugins {
 
 
 jar {
-    baseName = 'readinglist'
+    baseName = 'mvnrepo-backend'
     version = '0.0.1-SNAPSHOT'
+    archiveName = 'mvnrepo-backend.jar'
 }
 
 repositories {
@@ -59,9 +60,9 @@ sourceSets {
 
 heroku {
     appName = "mvnrepo-backend"
-    includes = ["c:\\dev\\repos\\mvnrepo-backend\\build\\libs\\readinglist-0.0.1-SNAPSHOT.jar"] // TODO: nefunguje relativna cesta
+    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
     includeBuildDir = false
     processTypes(
-            web: "java -jar readinglist-0.0.1-SNAPSHOT.jar"
+            web: "java -jar build/libs/mvnrepo-backend.jar"
     )
 }

@@ -1,0 +1,12 @@
+#!/bin/bash
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+set -x
+
+export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+export PATH=$JAVA_HOME/bin:$PATH
+
+cd $OPENSHIFT_REPO_DIR
+echo "deploy"
+echo `pwd`
+nohup java -jar diy/mvnrepo-backend.jar --server.port=8080 --server.address=${OPENSHIFT_DIY_IP} &

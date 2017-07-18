@@ -1,0 +1,16 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_DIY_IP:8080
+#nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+set -x
+
+export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+export PATH=$JAVA_HOME/bin:$PATH
+
+cd $OPENSHIFT_REPO_DIR
+echo "start"
+echo `pwd`
+nohup java -jar diy/mvnrepo-backend.jar --server.port=8080 --server.address=${OPENSHIFT_DIY_IP} &
