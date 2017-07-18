@@ -59,9 +59,9 @@ sourceSets {
 
 heroku {
     appName = "mvnrepo-backend"
-    includes = ["build/libs/$jarFileName"] // TODO: nefunguje relativna cesta vo windows
+    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
     includeBuildDir = false
     processTypes(
-            web: "java -jar build/libs/$jarFileName"
+            web: "java -jar build/libs/mvnrepo-backend.jar"
     )
 }
