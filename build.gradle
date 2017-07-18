@@ -3,17 +3,19 @@
 //version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.1'
 
     ext {
+        kotlinVersion = '1.1.1'
         springBootVersion = '1.5.4.RELEASE'
+        jarFileName = 'mvnrepo-backend.jar'
     }
 
     repositories {
         mavenCentral()
     }
+
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     }
 }
@@ -21,24 +23,22 @@ buildscript {
 plugins {
     id "com.heroku.sdk.heroku-gradle" version "0.2.0"
 }
-//subprojects {
-    apply plugin: "java"
-    apply plugin: 'kotlin'
-    apply plugin: 'application'
-    apply plugin: 'idea'
-    apply plugin: 'org.springframework.boot'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    //apply plugin: 'org.springframework.boot.gradle.plugin.SpringBootPlugin'
-//}
+apply plugin: "java"
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 
 
 jar {
     baseName = 'mvnrepo-backend'
     version = '0.0.1-SNAPSHOT'
-    archiveName = 'mvnrepo-backend.jar'
+    archiveName = "$jarFileName"
 }
 
 repositories {
@@ -46,9 +46,8 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile("org.springframework.boot:spring-boot-starter-web")
-    // TODO: spring 5.0
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+    compile("org.springframework.boot:spring-boot-starter-web")// TODO: spring 5.0
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.4.2'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
@@ -60,9 +59,9 @@ sourceSets {
 
 heroku {
     appName = "mvnrepo-backend"
-    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
+    includes = ["build/libs/$jarFileName"] // TODO: nefunguje relativna cesta vo windows
     includeBuildDir = false
     processTypes(
-            web: "java -jar build/libs/mvnrepo-backend.jar"
+            web: "java -jar build/libs/$jarFileName"
     )
 }
