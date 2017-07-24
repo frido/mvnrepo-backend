@@ -68,3 +68,11 @@ Used DIY (Do It Yourself) template.
 as `Heroku` Add-ons
 
 account: *mvnrepo-backend* 
+
+#Wakatime
+*TODO*
+
+#NOTES
+
+## gradle problem on c9
+consume too much memory, need to specify max heat size - *TODO: description*

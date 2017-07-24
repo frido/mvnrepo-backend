@@ -50,7 +50,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")// TODO: spring 5.0
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.4.2'
     testCompile("org.springframework.boot:spring-boot-starter-test")
-
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
 }
 
 sourceSets {
