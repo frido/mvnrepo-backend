@@ -82,3 +82,30 @@ account: *mvnrepo-backend*
 * add to `gradlew` file:
     * DEFAULT_JVM_OPTS=-Xmx128m
     * GRADLE_OPTS=-Xmx128m
+
+#API
+GET methods for everything.
+
+**search**
+* query: regex search in group, artifact and version (maybe in description)
+    * return `List<Lib>`
+* group: exac match in group field
+    * return `List<Lib>`
+* artifact: exac match in artifact field
+    * return `List<Lib>`
+* version: exac match in version field
+    * return `List<Lib>`
+* artifact: exac match in artifact field
+    * return `List<Lib>`
+* psize: page size
+* pnumber: number of page
+
+**id**
+* id(path): exac match in id field
+    * return `Lib|Pom` according 'style'
+* style: lib|pom|all (default all)
+
+**coordinate**
+* group+artifact+version: exac match in fields
+    * return `Lib|Pom` according 'style'
+* style: lib|pom|all (default all)
