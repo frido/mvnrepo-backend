@@ -70,9 +70,15 @@ as `Heroku` Add-ons
 account: *mvnrepo-backend* 
 
 #Wakatime
-*TODO*
+
+**Setup**
+* "create" plugin according tutorial
 
 #NOTES
 
 ## gradle problem on c9
-consume too much memory, need to specify max heat size - *TODO: description*
+**Consume too much memory -> need to specify max heap size**
+* generate `gradlew` via `gradle wrapper`
+* add to `gradlew` file:
+    * DEFAULT_JVM_OPTS=-Xmx128m
+    * GRADLE_OPTS=-Xmx128m
