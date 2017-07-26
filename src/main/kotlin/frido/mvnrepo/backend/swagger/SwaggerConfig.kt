@@ -1,4 +1,4 @@
-package frido.mvnrepo.backend
+package frido.mvnrepo.backend.swagger
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

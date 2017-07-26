@@ -1,26 +1,27 @@
-package frido.mvnrepo.backend
+package frido.mvnrepo.backend.api
 
-import org.springframework.web.bind.annotation.ResponseBody
+import frido.mvnrepo.backend.mongo.MongoService
+import frido.mvnrepo.backend.mongo.schema.Repo
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
-import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 
 
 @RestController
+@RequestMapping(value="/api/")
 @Api(value = "test")
 open class ApiController {
 
     @Autowired
     lateinit var backend: MongoService
 
-    @GetMapping("api/test")
-    @ResponseBody
-    @ApiOperation(value="test")
-    open fun test(): String {
-        return backend.getRepo("central").findFirst().orElse(Document()).toJson()
+    @ApiOperation(value="repo")
+    @GetMapping("repo")
+    open fun repo(): List<Repo> {
+        return backend.findAllRepos()
     }
 
 }

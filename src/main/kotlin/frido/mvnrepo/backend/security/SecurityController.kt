@@ -1,4 +1,4 @@
-package frido.mvnrepo.backend
+package frido.mvnrepo.backend.security
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity

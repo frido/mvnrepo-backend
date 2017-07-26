@@ -72,7 +72,7 @@ account: *mvnrepo-backend*
 #Wakatime
 
 **Setup**
-* "create" plugin according tutorial
+* "of" plugin according tutorial
 
 #NOTES
 
