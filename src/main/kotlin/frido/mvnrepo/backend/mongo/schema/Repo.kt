@@ -2,7 +2,7 @@ package frido.mvnrepo.backend.mongo.schema
 
 import org.bson.Document
 
-class Repo(val id: String, val name: String, val base: String, val updatedAt: Long?) {
+data class Repo(val id: String, val name: String, val base: String, val updatedAt: Long?) {
     companion object Factory {
         fun of(doc: Document): Repo {
             val id = doc.getObjectId("_id").toString()

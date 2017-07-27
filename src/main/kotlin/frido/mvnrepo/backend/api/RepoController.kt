@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @RestController
 @RequestMapping(value="/api/")
-@Api(value = "test")
-open class ApiController {
+@Api(value = "repo")
+open class RepoController {
 
     @Autowired
     lateinit var backend: MongoService
