@@ -7,6 +7,8 @@ import frido.mvnrepo.backend.mongo.schema.Repo
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiParam
 import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiResponses
+import io.swagger.annotations.ApiResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -21,8 +23,16 @@ open class LibController {
     @Autowired
     lateinit var backend: MongoService
 
-    @ApiOperation(value="search")
+    
     @GetMapping("search")
+    @ApiOperation(value="search")
+    /*@ApiResponses(value = listOf( 
+        ApiResponse(code = 200, message = "Given library found"),
+	    ApiResponse(code = 404, message = "Given library not found"),
+	    ApiResponse(code = 500, message = "Internal server error due to encoding the data"),
+	    ApiResponse(code = 400, message = "Bad request due to decoding the data"),
+        ApiResponse(code = 412, message = "Pre condition failed due to required data not found") ))*/
+    //@ApiResponses(value = ApiResponse(code = 200, message = "Given library found"), value = ApiResponse(code = 404, message = "Given library not found") )
     open fun search(
             @RequestParam("query", required = false) query: String?,
             @RequestParam("groupId", required = false) groupId: String?,
