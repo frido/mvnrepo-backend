@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value="/api/")
+@RequestMapping(value="/api/lib")
 @Api(value = "lib")
 open class LibController {
 
     @Autowired
     lateinit var backend: MongoService
 
-    @ApiOperation(value="lib")
-    @GetMapping("lib")
+    @ApiOperation(value="search")
+    @GetMapping("search")
     open fun search(
             @RequestParam("query", required = false) query: String?,
             @RequestParam("groupId", required = false) groupId: String?,
@@ -39,6 +39,16 @@ open class LibController {
         search.pnumber = pnumber //!!.toInt() // TODO: nemusi byt cislo
         search.psize = psize //!!.toInt() // TODO: nemusi byt cislo
         return backend.findLibs(search)
+    }
+    
+    @ApiOperation(value="id")
+    @GetMapping("id")
+    open fun id(
+            @RequestParam("id", required = true) id: String
+    ): Library {
+        val search: SearchCriteria = SearchCriteria()
+        search.addCriteria("id", id)
+        return backend.findLibs(search).first()
     }
 
 }

@@ -105,7 +105,7 @@ GET methods for everything.
     * return `Lib|Pom` according 'style'
 * style: lib|pom|all (default all)
 
-**coordinate**
+**exact**
 * group+artifact+version: exac match in fields
     * return `Lib|Pom` according 'style'
 * style: lib|pom|all (default all)
