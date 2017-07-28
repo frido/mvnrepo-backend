@@ -4,8 +4,8 @@ import org.bson.Document
 
 class SearchCriteria {
     val filter: Document = Document()
-    val psize: Int = 20
-    val pnumber: Int = 0
+    var psize: Int = 20
+    var pnumber: Int = 0
 
     fun addCriteria(key: String, value: String?){
         if(value != null) {
