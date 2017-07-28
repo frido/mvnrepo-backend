@@ -17,7 +17,7 @@ data class Library(
             doc.getString("groupId"),
             doc.getString("artifactId"),
             doc.getString("version"),
-            Versions(doc.getOrDefault(key = "versions", defaultValue = Document()) as Document),
+            Versions(doc.getOrDefault(key = "versioning", defaultValue = Document()) as Document),
             doc.getString("latest"),
             doc.getString("description"),
             doc.getString("repo")
