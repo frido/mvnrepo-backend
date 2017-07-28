@@ -100,12 +100,12 @@ GET methods for everything.
 * psize: page size
 * pnumber: number of page
 
-**id**
+**objectId**
 * id(path): exac match in id field
     * return `Lib|Pom` according 'style'
 * style: lib|pom|all (default all)
 
-**exact**
+**id**
 * group+artifact+version: exac match in fields
     * return `Lib|Pom` according 'style'
 * style: lib|pom|all (default all)

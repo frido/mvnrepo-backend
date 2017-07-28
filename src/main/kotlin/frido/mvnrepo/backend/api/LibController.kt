@@ -41,13 +41,29 @@ open class LibController {
         return backend.findLibs(search)
     }
     
-    @ApiOperation(value="id")
-    @GetMapping("id")
-    open fun id(
+    @ApiOperation(value="objectId")
+    @GetMapping("objectId")
+    open fun objectId(
             @RequestParam("id", required = true) id: String
     ): Library {
         val search: SearchCriteria = SearchCriteria()
         search.addCriteria("id", id)
+        return backend.findLibs(search).first()
+    }
+    
+    @ApiOperation(value="id")
+    @GetMapping("id")
+    open fun id(
+            @RequestParam("groupId", required = true) groupId: String,
+            @RequestParam("artifactId", required = true) artifactId: String,
+            @RequestParam("version", required = true) version: String
+    ): Library {
+        val search: SearchCriteria = SearchCriteria()
+        search.addCriteria("groupId", groupId)
+        search.addCriteria("artifactId", artifactId)
+        search.addCriteria("version", version)
+        search.pnumber = 0
+        search.psize = 1
         return backend.findLibs(search).first()
     }
 
