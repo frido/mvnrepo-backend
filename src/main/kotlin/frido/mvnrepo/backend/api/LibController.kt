@@ -26,12 +26,12 @@ open class LibController {
     
     @GetMapping("search")
     @ApiOperation(value="search")
-    /*@ApiResponses(value = listOf( 
+    @ApiResponses(
         ApiResponse(code = 200, message = "Given library found"),
 	    ApiResponse(code = 404, message = "Given library not found"),
 	    ApiResponse(code = 500, message = "Internal server error due to encoding the data"),
 	    ApiResponse(code = 400, message = "Bad request due to decoding the data"),
-        ApiResponse(code = 412, message = "Pre condition failed due to required data not found") ))*/
+        ApiResponse(code = 412, message = "Pre condition failed due to required data not found") )
     //@ApiResponses(value = ApiResponse(code = 200, message = "Given library found"), value = ApiResponse(code = 404, message = "Given library not found") )
     open fun search(
             @RequestParam("query", required = false) query: String?,
