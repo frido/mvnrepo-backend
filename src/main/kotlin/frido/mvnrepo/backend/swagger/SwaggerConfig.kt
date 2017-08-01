@@ -15,6 +15,7 @@ open class SwaggerConfig {
     @Bean
     open fun api(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
+                .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("frido.mvnrepo"))
                 //.paths(PathSelectors.any())

@@ -109,3 +109,8 @@ GET methods for everything.
 * group+artifact+version: exac match in fields
     * return `Lib|Pom` according 'style'
 * style: lib|pom|all (default all)
+
+**developer**
+* query: regex search in name, nick, organization
+    * return `Lib|Pom` according 'style'
+* style: lib|pom|all (default all)

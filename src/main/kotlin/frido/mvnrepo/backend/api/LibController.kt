@@ -28,11 +28,7 @@ open class LibController {
     @ApiOperation(value="search")
     @ApiResponses(
         ApiResponse(code = 200, message = "Given library found"),
-	    ApiResponse(code = 404, message = "Given library not found"),
-	    ApiResponse(code = 500, message = "Internal server error due to encoding the data"),
-	    ApiResponse(code = 400, message = "Bad request due to decoding the data"),
-        ApiResponse(code = 412, message = "Pre condition failed due to required data not found") )
-    //@ApiResponses(value = ApiResponse(code = 200, message = "Given library found"), value = ApiResponse(code = 404, message = "Given library not found") )
+	    ApiResponse(code = 400, message = "Bad request") )
     open fun search(
             @RequestParam("query", required = false) query: String?,
             @RequestParam("groupId", required = false) groupId: String?,
@@ -51,8 +47,12 @@ open class LibController {
         return backend.findLibs(search)
     }
     
-    @ApiOperation(value="objectId")
     @GetMapping("objectId")
+    @ApiOperation(value="objectId")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "Given library found"),
+	    ApiResponse(code = 400, message = "Bad request"),
+	    ApiResponse(code = 404, message = "Given library not found") )
     open fun objectId(
             @RequestParam("id", required = true) id: String
     ): Library {
@@ -61,8 +61,12 @@ open class LibController {
         return backend.findLibs(search).first()
     }
     
-    @ApiOperation(value="id")
     @GetMapping("id")
+    @ApiOperation(value="id")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "Given library found"),
+	    ApiResponse(code = 400, message = "Bad request"),
+	    ApiResponse(code = 404, message = "Given library not found") )
     open fun id(
             @RequestParam("groupId", required = true) groupId: String,
             @RequestParam("artifactId", required = true) artifactId: String,
