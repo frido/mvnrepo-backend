@@ -15,7 +15,7 @@ open class MongoService{
     lateinit var mongo: MongoDatabase
 
     private val REPO = "repo"
-    private val LIB = "lib"
+    private val LIB = "metadata"
 
     fun findAllRepos(): List<Repo> {
         return mongo
