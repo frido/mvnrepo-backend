@@ -5,11 +5,14 @@ import com.mongodb.client.MongoDatabase
 import frido.mvnrepo.backend.mongo.schema.Library
 import frido.mvnrepo.backend.mongo.schema.Repo
 import org.bson.Document
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
 open class MongoService{
+
+    var log = LoggerFactory.getLogger(MongoService::class.java)
 
     @Autowired
     lateinit var mongo: MongoDatabase
@@ -34,6 +37,8 @@ open class MongoService{
     }
 
     fun find(search: SearchCriteria, collection: String): FindIterable<Document> {
+        log.info(search.filter.toString());
+        log.info(collection);
         return mongo
                 .getCollection(collection)
                 .find(search.filter)

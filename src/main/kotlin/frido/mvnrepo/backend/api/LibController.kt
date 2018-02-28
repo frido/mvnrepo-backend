@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiParam
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponses
 import io.swagger.annotations.ApiResponse
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(value="/api/lib")
 @Api(value = "lib")
 open class LibController {
+
+    var log = LoggerFactory.getLogger(LibController::class.java)
 
     @Autowired
     lateinit var backend: MongoService
@@ -44,6 +47,7 @@ open class LibController {
         search.addCriteria("version", version)
         search.pnumber = pnumber //!!.toInt() // TODO: nemusi byt cislo
         search.psize = psize //!!.toInt() // TODO: nemusi byt cislo
+        log.info(search.filter.toString())
         return backend.findLibs(search)
     }
     
