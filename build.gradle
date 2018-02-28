@@ -7,29 +7,33 @@ buildscript {
     ext {
         kotlinVersion = '1.2.21'
         springBootGradleVersion = '1.5.10.RELEASE'
-        springBootVersion = '2.0.0.RC2'
+        //springBootGradleVersion = '2.0.0.BUILD-SNAPSHOT'
+        springBootVersion = '1.5.10.RELEASE'
+        //springBootVersion = '2.0.0.RC2'
         jarFileName = 'mvnrepo-backend.jar'
     }
 
     repositories {
         mavenCentral()
+        maven { url 'https://repo.spring.io/libs-snapshot' }
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        //classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     }
 }
 
-plugins {
-    id "com.heroku.sdk.heroku-gradle" version "1.0.1"
-}
+//plugins {
+//    id "com.heroku.sdk.heroku-gradle" version "1.0.1"
+//}
 
 apply plugin: "java"
 apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'idea'
-//apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -53,24 +57,35 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion" //FIX: Kotlin vs Spring5 compatible error (https://github.com/spring-projects/spring-boot/issues/9984)
-    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.6.3'
+    
+    //compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    //compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+    //compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.6.3'
+    
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.8.0' // verzia 2.7.0 not works with actuator
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.8.0' // verzia 2.7.0 not works with actuator
-    compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    
+    //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion"
 }
 
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
 
-heroku {
-    appName = "mvnrepo-backend"
-    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
-    includeBuildDir = false
-    processTypes(
-            web: "java -jar build/libs/mvnrepo-backend.jar"
-    )
-}
+//heroku {
+//    appName = "mvnrepo-backend"
+//    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
+//    includeBuildDir = false
+//    processTypes(
+//            web: "java -jar build/libs/mvnrepo-backend.jar"
+//    )
+//}
+
