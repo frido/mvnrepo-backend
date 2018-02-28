@@ -1,17 +1,29 @@
-#Bitbucket
+# Development
 
-project `mvnrepa-backend`
+The best IDE for `Kotlin` is `IntelliJ`. With the `Gradle` as build tool you are on top of modern application.
 
-##Pipeline
+## Libraries
+
+* spring boot
+* swagger2
+* *mongo*: `Mongo` vs ~~`Morphia`~~ vs ~~`Mongoose`~~
+ 
+`JAX-RS` or `Jersey` are alternatives for `Spring-Web`. But why use something different when you already have Spring in your classpath. 
+
+# Integrations
+
+## Bitbucket Pipeline
 just build (maybe in the future test) and send artifact jar file to bitbucket repository to possible download
 
-#C9
+## mLab
+https://mlab.com/databases/frido
 
-project `common`: https://ide.c9.io/frido/common
+## C9
+https://ide.c9.io/frido/common
 
-Used Ubuntu template.
 
-**Setup project:**
+#Setup project
+
 * install oracle `java8`
 * install `sdk` (for gradle)
 * install `gradle` (via sdk)
@@ -20,17 +32,22 @@ Used Ubuntu template.
 * set env MONGO_URL for c9 (just set it as in linux to `.profile` file)
 * env PORT is setted by default
 
-**Setup heroku**
+# Setup heroku
+
 * install `heroku` client
 
-**Setup openshift client**
+#Setup openshift client
+
 * install `ruby`
 * install `rubygems`
 * install `rhc`
 
-**Usefull commands:**
-* `gradle build`
-* `gradle bootRun`
+# Usage
+
+* `./gradlew build` - build jar of application
+* `./gradlew bootRun` - run application
+
+# NEXT HINTS
 
 #Heroku
 
