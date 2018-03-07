@@ -1,4 +1,4 @@
-package frido.mvnrepo.backend.swagger
+package frido.mvnrepo.backend.config
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ open class SwaggerConfig {
         return Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("frido.mvnrepo"))
+                .apis(RequestHandlerSelectors.basePackage("frido.mvnrepo.backend"))
                 //.paths(PathSelectors.any())
                 .paths(PathSelectors.regex("/api.*"))
                 .build()

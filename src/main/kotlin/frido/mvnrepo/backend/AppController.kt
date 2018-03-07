@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 
 // TODO: upravit podla knihy // TODO: Akej knihy
 @SpringBootApplication
-@ComponentScan(basePackages = arrayOf("frido.mvnrepo"))
+@ComponentScan(basePackages = arrayOf("frido.mvnrepo.backend"))
 @EnableAutoConfiguration(exclude = arrayOf(org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration::class/*, org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration::class*/))
 @Configuration
 open class AppController {

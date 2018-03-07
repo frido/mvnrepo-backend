@@ -1,4 +1,4 @@
-package frido.mvnrepo.backend.mongo
+package frido.mvnrepo.backend.config
 
 import com.mongodb.MongoClient
 import com.mongodb.MongoClientURI

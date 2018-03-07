@@ -10,7 +10,7 @@ buildscript {
         //springBootGradleVersion = '2.0.0.BUILD-SNAPSHOT'
         springBootVersion = '1.5.10.RELEASE'
         //springBootVersion = '2.0.0.RC2'
-        jarFileName = 'mvnrepo-backend.jar'
+        jarFileName = 'mvnrepo-backend_old.jar'
     }
 
     repositories {
@@ -40,9 +40,9 @@ targetCompatibility = 1.8
 
 jar {
     manifest {
-        attributes 'Main-Class': 'frido.mvnrepo.backend.AppController'
+        attributes 'Main-Class': 'frido.mvnrepo.backend_old.AppController'
     }
-    baseName = 'mvnrepo-backend'
+    baseName = 'mvnrepo-backend_old'
     version = '0.0.1-SNAPSHOT'
     archiveName = "$jarFileName"
 }
@@ -60,11 +60,12 @@ dependencies {
     
     //compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     //compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
-    //compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    //compile("org.springframework.boot:spring-boot-starter-config:$springBootVersion")
     
     compile("org.springframework.boot:spring-boot-starter-web")
-    //compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-security")
+    //compile("org.springframework.boot:spring-boot-starter-actuator")
+    //compile("org.springframework.boot:spring-boot-starter-config")
     
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     
@@ -81,11 +82,11 @@ sourceSets {
 }
 
 //heroku {
-//    appName = "mvnrepo-backend"
-//    includes = ["build/libs/mvnrepo-backend.jar"] // TODO: nefunguje relativna cesta vo windows
+//    appName = "mvnrepo-backend_old"
+//    includes = ["build/libs/mvnrepo-backend_old.jar"] // TODO: nefunguje relativna cesta vo windows
 //    includeBuildDir = false
 //    processTypes(
-//            web: "java -jar build/libs/mvnrepo-backend.jar"
+//            web: "java -jar build/libs/mvnrepo-backend_old.jar"
 //    )
 //}
 
