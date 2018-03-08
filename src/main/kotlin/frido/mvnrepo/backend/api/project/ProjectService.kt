@@ -20,9 +20,12 @@ open class ProjectService {
     @Autowired
     lateinit var mongo: MongoService
 
+    /**
+     * Search for most popular projects
+     */
     fun top(attribute: String): List<Project> {
         val filter = Document()
-        val sort = null
+        val sort = Document(attribute, -1) //{"stargazers.totalCount":-1}
         return mongo
                 .find(filter, sort, COLLECTION )
                 .map { result: Document -> log.info(result.toString()); Project(result) }
