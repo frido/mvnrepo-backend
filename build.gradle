@@ -1,7 +1,7 @@
 //rootProject.name = 'mvnrepo-backend'
 //group 'frido.mvnrepo'
 //version '1.0-SNAPSHOT'
-
+// TODO: use variable jarFileName everywhere
 buildscript {
 
     ext {
@@ -10,7 +10,7 @@ buildscript {
         //springBootGradleVersion = '2.0.0.BUILD-SNAPSHOT'
         springBootVersion = '1.5.10.RELEASE'
         //springBootVersion = '2.0.0.RC2'
-        jarFileName = 'mvnrepo-backend_old.jar'
+        jarFileName = 'mvnrepo-backend.jar'
     }
 
     repositories {
@@ -24,9 +24,9 @@ buildscript {
     }
 }
 
-//plugins {
-//    id "com.heroku.sdk.heroku-gradle" version "1.0.1"
-//}
+plugins {
+    id "com.heroku.sdk.heroku-gradle" version "1.0.1"
+}
 
 apply plugin: "java"
 apply plugin: 'kotlin'
@@ -40,9 +40,9 @@ targetCompatibility = 1.8
 
 jar {
     manifest {
-        attributes 'Main-Class': 'frido.mvnrepo.backend_old.AppController'
+        attributes 'Main-Class': 'frido.mvnrepo.backend.AppController'
     }
-    baseName = 'mvnrepo-backend_old'
+    baseName = 'mvnrepo-backend'
     version = '0.0.1-SNAPSHOT'
     archiveName = "$jarFileName"
 }
@@ -81,12 +81,12 @@ sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
 
-//heroku {
-//    appName = "mvnrepo-backend_old"
-//    includes = ["build/libs/mvnrepo-backend_old.jar"] // TODO: nefunguje relativna cesta vo windows
-//    includeBuildDir = false
-//    processTypes(
-//            web: "java -jar build/libs/mvnrepo-backend_old.jar"
-//    )
-//}
+heroku {
+    appName = "mvnrepo-backend"
+    includes = ["build/libs/mvnrepo-backend.jar"]
+    includeBuildDir = false
+    processTypes(
+            web: "java -jar build/libs/mvnrepo-backend.jar"
+    )
+}
 
