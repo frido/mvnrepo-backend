@@ -1,7 +1,6 @@
 package frido.mvnrepo.backend.api.project
 
 import io.swagger.annotations.Api
-import io.swagger.annotations.ApiParam
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponses
 import io.swagger.annotations.ApiResponse
@@ -29,10 +28,11 @@ open class ProjectController {
         ApiResponse(code = 200, message = "Given library found"),
 	    ApiResponse(code = 400, message = "Bad request") )
     open fun top(
-            @RequestParam("attribute", required = true) attribute: String?
+            @RequestParam("attribute", required = true) attribute: String?,
+            @RequestParam("size", required = false) size: Int?
     ): Response {
         log.info(attribute)
-        val response = Response(service.top(attribute.orEmpty()))
+        val response = Response(service.top(attribute.orEmpty(), size))
         return response
     }
 

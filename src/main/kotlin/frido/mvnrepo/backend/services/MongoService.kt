@@ -17,15 +17,15 @@ open class MongoService{
     @Autowired
     lateinit var mongo: MongoDatabase
 
-    fun find(filter: Bson, sort: Bson?, collection: String): FindIterable<Document> {
+    fun find(collection: String, filter: Bson, sort: Bson? = null, limit: Int = 50, skip: Int = 0): FindIterable<Document> {
         log.info(filter.toString()); //TODO: fix log message
         log.info(collection);
         return mongo
                 .getCollection(collection)
                 .find(filter)
                 .sort(sort)
-                .skip(0)
-                .limit(50)
+                .skip(skip)
+                .limit(limit)
     }
 
 }
