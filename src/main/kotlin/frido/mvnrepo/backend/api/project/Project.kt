@@ -24,6 +24,9 @@ class Project(result: Document) {
     @JsonGetter("pushedAt")
     fun getPushedAt(): String? = result.getString("pushedAt")
 
+    @JsonGetter("description")
+    fun getDescription(): String? = result.getString("description")
+
     @JsonGetter("stargazers")
     fun getStargazers(): Int? {
         var stargazers: Document = result.get("stargazers") as Document

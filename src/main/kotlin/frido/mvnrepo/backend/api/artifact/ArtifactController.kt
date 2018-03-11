@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value="/api/projects")
-@Api(value = "projects")
-open class ProjectController {
+@RequestMapping(value="/api/artifacts")
+@Api(value = "artifacts")
+open class ArtifactController {
 
     var log = LoggerFactory.getLogger(ArtifactController::class.java)
 
     @Autowired
-    lateinit var service: ProjectService
+    lateinit var service: ArtifactService
 
     @GetMapping("top")
     @ApiOperation(value="top")
@@ -52,7 +52,7 @@ open class ProjectController {
             @RequestParam("size", required = false) size: Int?
     ): Response {
         log.info(pattern)
-        val response = Response(service.search("description", pattern.orEmpty(), size))
+        val response = Response(service.search("artifactId", pattern.orEmpty(), size))
         return response
     }
 }

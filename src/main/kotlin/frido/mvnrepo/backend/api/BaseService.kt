@@ -35,11 +35,27 @@ abstract class BaseService<T> {
     /**
      * Search for id
      */
-    fun id(id: String, size: Int?): T {
+    fun id(id: String): T {
         val filter = Document("_id", id)
         return mongo
                 .find(getCollection(), filter)
                 .map(map())
                 .first();
+    }
+
+    // TODO: hladanie $or pre viac attributov
+    fun search(attribute: String, pattern: String, size: Int?): List<T> {
+        val regex = ".*$pattern.*"
+        val options: HashMap<String, Any> = hashMapOf("\$regex" to regex, "\$options" to "i")
+        val filter = Document(attribute, Document(options)) // { "genre": { "$regex":"Hip.*Hop","$options":"i" } }
+        val sort = null
+        var number = 50 // TODO: constant
+        if(size != null) {
+            number = size;
+        }
+        return mongo
+                .find(getCollection(), filter, sort, number)
+                .map(map())
+                .toList();
     }
 }
