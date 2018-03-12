@@ -4,6 +4,7 @@ import frido.mvnrepo.backend.api.ApiResponsesStandard
 import frido.mvnrepo.backend.api.Response
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiParam
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @Api(value = "/artifacts", description = "Operations about artifacts. Artifact is set of data about java library collected from repository metadata")
 @RestController
-@RequestMapping(value="/api/artifacts", produces="application/json")
+@RequestMapping(value="/api/artifacts", produces=["application/json"])
 open class ArtifactController {
 
     var log = LoggerFactory.getLogger(ArtifactController::class.java)
@@ -25,7 +26,7 @@ open class ArtifactController {
     @ApiOperation(value="Get list of artifacts ordered by attribute in desc order")
     @ApiResponsesStandard
     open fun top(
-            @ApiParam(value = "Attribute of artifact to use for ordering", allowableValues="a,b,c") 
+            @ApiParam(value = "Attribute of artifact to use for ordering", allowableValues="a,b,c")
             @RequestParam("attribute", required = true) 
             attribute: String?,
             @ApiParam(value = "Maximum number of artifacts in the response")
