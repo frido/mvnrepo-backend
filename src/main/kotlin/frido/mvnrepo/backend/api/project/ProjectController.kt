@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
+@Api(value = "/projects", description = "Operations about projects. Project is set of data about repository collected from GitHub")
 @RestController
-@RequestMapping(value="/api/projects")
-@Api(value = "projects")
+@RequestMapping(value="/api/projects", produces="application/json")
 open class ProjectController {
 
     var log = LoggerFactory.getLogger(ArtifactController::class.java)
@@ -21,35 +21,45 @@ open class ProjectController {
     @Autowired
     lateinit var service: ProjectService
 
-    @GetMapping("top")
-    @ApiOperation(value="top")
+    @ApiOperation(value="Get list of projects ordered by attribute in desc order")
     @ApiResponsesStandard
+    @GetMapping("top")
     open fun top(
-            @RequestParam("attribute", required = true) attribute: String?,
-            @RequestParam("size", required = false) size: Int?
+            @ApiParam(value = "Attribute of project to use for ordering", allowableValues="a,b,c") 
+            @RequestParam("attribute", required = true) 
+            attribute: String?,
+            @ApiParam(value = "Maximum number of projects in the response")
+            @RequestParam("size", required = false) 
+            size: Int?
     ): Response {
         log.info(attribute)
         val response = Response(service.top(attribute.orEmpty(), size))
         return response
     }
 
-    @GetMapping("id")
-    @ApiOperation(value="id")
+    @ApiOperation(value="Get Project according to id")
     @ApiResponsesStandard
+    @GetMapping("id")
     open fun id(
-            @RequestParam("id", required = true) id: String?
+            @ApiParam(value = "Id of project") 
+            @RequestParam("id", required = true) 
+            id: String?
     ): Response {
         log.info(id)
         val response = Response(service.id(id.orEmpty()))
         return response
     }
 
-    @GetMapping("search")
-    @ApiOperation(value="search")
+    @ApiOperation(value="Get list of projects what match string pattern")
     @ApiResponsesStandard
+    @GetMapping("search")
     open fun search(
-            @RequestParam("pattern", required = true) pattern: String?,
-            @RequestParam("size", required = false) size: Int?
+            @ApiParam(value = "Pattern to search in attribute description") 
+            @RequestParam("pattern", required = true) 
+            pattern: String?,
+            @ApiParam(value = "Maximum number of projects in the response")
+            @RequestParam("size", required = false) 
+            size: Int?
     ): Response {
         log.info(pattern)
         val response = Response(service.search("description", pattern.orEmpty(), size))

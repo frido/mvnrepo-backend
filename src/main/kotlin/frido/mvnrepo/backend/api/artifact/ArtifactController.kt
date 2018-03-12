@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
+@Api(value = "/artifacts", description = "Operations about artifacts. Artifact is set of data about java library collected from repository metadata")
 @RestController
-@RequestMapping(value="/api/artifacts")
-@Api(value = "artifacts")
+@RequestMapping(value="/api/artifacts", produces="application/json")
 open class ArtifactController {
 
     var log = LoggerFactory.getLogger(ArtifactController::class.java)
@@ -22,34 +22,45 @@ open class ArtifactController {
     lateinit var service: ArtifactService
 
     @GetMapping("top")
-    @ApiOperation(value="top")
+    @ApiOperation(value="Get list of artifacts ordered by attribute in desc order")
     @ApiResponsesStandard
     open fun top(
-            @RequestParam("attribute", required = true) attribute: String?,
-            @RequestParam("size", required = false) size: Int?
+            @ApiParam(value = "Attribute of artifact to use for ordering", allowableValues="a,b,c") 
+            @RequestParam("attribute", required = true) 
+            attribute: String?,
+            @ApiParam(value = "Maximum number of artifacts in the response")
+            @RequestParam("size", required = false) 
+            size: Int?
     ): Response {
         log.info(attribute)
         val response = Response(service.top(attribute.orEmpty(), size))
         return response
     }
 
-    @GetMapping("id")
-    @ApiOperation(value="id")
+    
+    @ApiOperation(value="Get artifact according to id")
     @ApiResponsesStandard
+    @GetMapping("id")
     open fun id(
-            @RequestParam("id", required = true) id: String?
+            @ApiParam(value = "Id of artifact") 
+            @RequestParam("id", required = true) 
+            id: String?
     ): Response {
         log.info(id)
         val response = Response(service.id(id.orEmpty()))
         return response
     }
 
-    @GetMapping("search")
-    @ApiOperation(value="search")
+    @ApiOperation(value="Get list of artifacts what match string pattern")
     @ApiResponsesStandard
+     @GetMapping("search")
     open fun search(
-            @RequestParam("pattern", required = true) pattern: String?,
-            @RequestParam("size", required = false) size: Int?
+            @ApiParam(value = "Pattern to search in attribute groupId") 
+            @RequestParam("pattern", required = true) 
+            pattern: String?,
+            @ApiParam(value = "Maximum number of artifacts in the response")
+            @RequestParam("size", required = false) 
+            size: Int?
     ): Response {
         log.info(pattern)
         val response = Response(service.search("artifactId", pattern.orEmpty(), size))
