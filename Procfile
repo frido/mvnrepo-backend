@@ -1,1 +1,1 @@
- web: "java -jar build/libs/mvnrepo-backend.jar"
+ web: java -jar build/libs/mvnrepo-backend.jar
