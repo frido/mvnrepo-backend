@@ -2,6 +2,7 @@ package frido.mvnrepo.backend.api.project
 
 import frido.mvnrepo.backend.api.ApiResponsesStandard
 import frido.mvnrepo.backend.api.Response
+import frido.mvnrepo.backend.api.Views
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
@@ -25,16 +26,17 @@ open class ArtifactController {
     @GetMapping("top")
     @ApiOperation(value="Get list of artifacts ordered by attribute in desc order")
     @ApiResponsesStandard
+    @JsonView(Views.Simple::class)
     open fun top(
-            @ApiParam(value = "Attribute of artifact to use for ordering", allowableValues="a,b,c")
-            @RequestParam("attribute", required = true) 
-            attribute: String?,
+            @ApiParam(value = "Attribute of artifact to use for ordering", allowableValues="versioning.lastUpdated")
+            @RequestParam("attribute", required = true, defaultValue = "versioning.lastUpdated") 
+            attribute: String,
             @ApiParam(value = "Maximum number of artifacts in the response")
-            @RequestParam("size", required = false) 
-            size: Int?
+            @RequestParam("size", required = false, defaultValue = "50") 
+            size: Int
     ): Response {
         log.info(attribute)
-        val response = Response(service.top(attribute.orEmpty(), size))
+        val response = Response(service.top(attribute, size))
         return response
     }
 
@@ -42,29 +44,31 @@ open class ArtifactController {
     @ApiOperation(value="Get artifact according to id")
     @ApiResponsesStandard
     @GetMapping("id")
+    @JsonView(Views.Full::class)
     open fun id(
             @ApiParam(value = "Id of artifact") 
-            @RequestParam("id", required = true) 
-            id: String?
+            @RequestParam("id", required = true, defaultValue = "") 
+            id: String
     ): Response {
         log.info(id)
-        val response = Response(service.id(id.orEmpty()))
+        val response = Response(service.id(id))
         return response
     }
 
     @ApiOperation(value="Get list of artifacts what match string pattern")
     @ApiResponsesStandard
-     @GetMapping("search")
+    @GetMapping("search")
+    @JsonView(Views.Simple::class)
     open fun search(
-            @ApiParam(value = "Pattern to search in attribute groupId") 
-            @RequestParam("pattern", required = true) 
-            pattern: String?,
+            @ApiParam(value = "Pattern to search in attribute artifactId") 
+            @RequestParam("pattern", required = true, defaultValue = "") 
+            pattern: String,
             @ApiParam(value = "Maximum number of artifacts in the response")
-            @RequestParam("size", required = false) 
-            size: Int?
+            @RequestParam("size", required = false, defaultValue = "50") 
+            size: Int
     ): Response {
         log.info(pattern)
-        val response = Response(service.search("artifactId", pattern.orEmpty(), size))
+        val response = Response(service.search("artifactId", pattern, size))
         return response
     }
 }
