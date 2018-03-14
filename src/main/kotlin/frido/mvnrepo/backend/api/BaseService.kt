@@ -58,4 +58,17 @@ abstract class BaseService<T> {
                 .map(map())
                 .toList();
     }
+
+    fun match(attribute: String, pattern: String, size: Int?): List<T> {
+        val filter = Document(attribute, pattern) // { "genre": { "$regex":"Hip.*Hop","$options":"i" } }
+        val sort = null
+        var number = 50 // TODO: constant
+        if(size != null) {
+            number = size;
+        }
+        return mongo
+                .find(getCollection(), filter, sort, number)
+                .map(map())
+                .toList();
+    }
 }

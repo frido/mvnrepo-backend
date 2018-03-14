@@ -54,7 +54,7 @@ open class ProjectController {
     ): Response {
         log.info(id)
         var project = service.id(id);
-        project.setArtifacts(artifactService.search("projectUrl", project.getId().orEmpty(), null))
+        project.setArtifacts(artifactService.match("projectUrl", project.getId().orEmpty(), null))
         val response = Response(project);
         return response
     }
