@@ -19,7 +19,7 @@ class Project(result: Document) {
 
     @JsonGetter("name")
     @JsonView(Views.Simple::class)
-    fun getName(): String? = result.getString("name") //TODO: calculate name
+    fun getName(): String? = getId()?.substring(19) //TODO: calculate name
 
     @JsonGetter("createdAt")
     @JsonView(Views.Simple::class)
