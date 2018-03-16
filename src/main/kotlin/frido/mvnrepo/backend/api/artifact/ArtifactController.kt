@@ -1,5 +1,6 @@
 package frido.mvnrepo.backend.api.project
 
+import com.fasterxml.jackson.annotation.JsonView
 import frido.mvnrepo.backend.api.ApiResponsesStandard
 import frido.mvnrepo.backend.api.Response
 import frido.mvnrepo.backend.api.Views
