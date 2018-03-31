@@ -3,6 +3,7 @@ package frido.mvnrepo.backend.api
 import frido.mvnrepo.backend.api.project.Project
 import frido.mvnrepo.backend.services.MongoService
 import org.bson.Document
+import org.bson.types.ObjectId
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
@@ -36,7 +37,7 @@ abstract class BaseService<T> {
      * Search for id
      */
     fun id(id: String): T {
-        val filter = Document("_id", id)
+        val filter = Document("_id", ObjectId(id))
         return mongo
                 .find(getCollection(), filter)
                 .map(map())

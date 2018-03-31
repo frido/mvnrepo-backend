@@ -15,7 +15,7 @@ class Project(result: Document) {
 
     @JsonGetter("_id")
     @JsonView(Views.Simple::class)
-    fun getId(): String? = result.getString("_id")
+    fun getId(): String? = result.getObjectId("_id")?.toString()
 
     @JsonGetter("name")
     @JsonView(Views.Simple::class)

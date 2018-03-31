@@ -50,7 +50,7 @@ class Artifact(result: Document) {
 
     private fun getLastVersion(): String? {
         val versioning = result.get("versioning") as Document?
-        val versions: BsonArray?  = versioning?.get("versions") as BsonArray?
+        val versions: ArrayList<String>?  = versioning?.get("versions") as ArrayList<String>?
         if(versions != null && !versions.isEmpty()){
             var last = versions.last() as String
             return last
