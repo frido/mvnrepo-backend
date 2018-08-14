@@ -12,7 +12,7 @@ open class ProjectService: BaseService<Project>() {
     override var log = LoggerFactory.getLogger(ArtifactService::class.java)
 
     override fun map(): Function<Document, Project> {
-        return Function<Document, Project> { t: Document -> Project(t) }
+        return Function { t: Document -> Project(t) }
     }
 
     override fun getCollection(): String {
