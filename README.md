@@ -1,27 +1,3 @@
-# Development
-
-The best IDE for `Kotlin` is `IntelliJ`. With the `Gradle` as build tool you are on top of modern application.
-
-## Libraries
-
-* spring boot
-* swagger2
-* *mongo*: `Mongo` vs ~~`Morphia`~~ vs ~~`Mongoose`~~
- 
-`JAX-RS` or `Jersey` are alternatives for `Spring-Web`. But why use something different when you already have Spring in your classpath. 
-
-# Integrations
-
-## Bitbucket Pipeline
-just build (maybe in the future test) and send artifact jar file to bitbucket repository to possible download
-
-## mLab
-https://mlab.com/databases/frido
-
-## C9
-https://ide.c9.io/frido/common
-
-
 #Setup project
 
 * install oracle `java8`
