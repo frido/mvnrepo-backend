@@ -18,12 +18,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @EnableAutoConfiguration(exclude = arrayOf(org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration::class/*, org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration::class*/))
 @Configuration
 open class AppController {
-    //companion object {
-    //            @JvmStatic fun main(args: Array<String>) {
-    //                print("Hello World1: ");
-    //                SpringApplication.run(arrayOf(AppController::class.java), args);
-    //            }
-    //        }
+    companion object {
+                @JvmStatic fun main(args: Array<String>) {
+                    print("Hello World1: ");
+                    SpringApplication.run(arrayOf(AppController::class.java), args);
+                }
+            }
     @Bean
     open fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurerAdapter() {
@@ -34,7 +34,7 @@ open class AppController {
     }
 }
 
-fun main(args: Array<String>){
-    print("Hello World2: ");
-    SpringApplication.run(arrayOf(AppController::class.java), args);
-}
+//fun main(args: Array<String>){
+//    print("Hello World2: ");
+//    SpringApplication.run(arrayOf(AppController::class.java), args);
+//}
