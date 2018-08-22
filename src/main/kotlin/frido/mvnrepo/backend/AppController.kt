@@ -34,7 +34,7 @@ open class AppController {
     }
 }
 
-//fun main(args: Array<String>){
+//fun main(args: Array<String>) {
 //    print("Hello World2: ");
 //    SpringApplication.run(arrayOf(AppController::class.java), args);
 //}
