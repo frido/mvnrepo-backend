@@ -41,14 +41,14 @@ targetCompatibility = 1.8
 
 mainClassName = 'frido.mvnrepo.backend.AppController'
 
-springBoot {
-    mainClassName = 'frido.mvnrepo.backend.AppController'
-}
+// springBoot {
+//     mainClassName = 'frido.mvnrepo.backend.AppController'
+// }
 
 bootJar {
-    manifest {
-        attributes 'Main-Class': 'frido.mvnrepo.backend.AppController'
-    }
+    // manifest {
+    //     attributes 'Main-Class': 'frido.mvnrepo.backend.AppController'
+    // }
     baseName = 'mvnrepo-backend'
     version = '0.0.1-SNAPSHOT'
     archiveName = "$jarFileName"
