@@ -45,7 +45,7 @@ springBoot {
     mainClassName = 'frido.mvnrepo.backend.AppController'
 }
 
-jar {
+bootJar {
     manifest {
         attributes 'Main-Class': 'frido.mvnrepo.backend.AppController'
     }
