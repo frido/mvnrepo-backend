@@ -25,7 +25,7 @@ buildscript {
 
 plugins {
     id "org.springframework.boot" version '2.0.4.RELEASE'
-    id "com.heroku.sdk.heroku-gradle" version "1.0.3"
+    id "com.heroku.sdk.heroku-gradle" version "1.0.1"
 }
 
 apply plugin: "java"
@@ -40,6 +40,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 mainClassName = 'frido.mvnrepo.backend.AppController'
+
+rootProject.name = 'mvnrepo-backend'
+archivesBaseName = 'mvnrepo-backend'
 
 springBoot {
     mainClassName = 'frido.mvnrepo.backend.AppController'
