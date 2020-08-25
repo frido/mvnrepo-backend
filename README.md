@@ -1,6 +1,6 @@
 # MvnRepo Backend
 
-[Spring Boot](https://spring.io/projects/spring-boot) application written in [Kotlin](https://kotlinlang.org/) provides REST-API backend.
+[Spring Boot](https://spring.io/projects/spring-boot) application written in [Kotlin](https://kotlinlang.org/) which provides REST-API backend.
 
 ## Prerequisites
 
